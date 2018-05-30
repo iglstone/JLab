@@ -12,7 +12,8 @@ from tf import TransformBroadcaster, transformations
 import struct
 
 PI = 3.1416
-TIMER_OUT = 0.02 #0.015
+TIMER_OUT = 0.02  # 0.015
+
 
 class JBotBaseDriver(object):
     def __init__(self, port='/dev/ttyUSB0', vel_topic='/cmd_vel'):
@@ -52,14 +53,13 @@ class JBotBaseDriver(object):
 
     #  send cmd vel evey 20 ms, 50hz
     def __send_cmdvel(self):
-        time_sleep = TIMER_OUT # 0.015  # send cmd vel evey 20 ms, 50hz
+        time_sleep = TIMER_OUT  # 0.015  # send cmd vel evey 20 ms, 50hz
         while True:
             # print('send cmd_vel: {0}'.format(self.fm_cmd_vel))
             self.__ser.write(self.fm_cmd_vel)
             rospy.sleep(time_sleep)
 
     def __vel_control(self, data):
-
         vx = data.linear.x
         vy = data.linear.y
         vz = data.angular.z
@@ -67,7 +67,7 @@ class JBotBaseDriver(object):
         vx = int(1000 * vx)
         vy = int(1000 * vy)
         vz = int(1000 * vz)
-	vz = -vz
+        vz = -vz
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
         # self.__ser.write(self.fm_cmd_vel)
@@ -88,93 +88,93 @@ class JBotBaseDriver(object):
         x = 0.0
         y = 0.0
         th = 0.0
-	vx_1 = 0
-	vy_1 = 0
-	vz_1 = 0
-        scal_x = 0.642 # 0.68
-	scal_y = 0.642 #0.62
-	scal_th = 0.624 #0.71
-        
+        vx_1 = 0
+        vy_1 = 0
+        vz_1 = 0
 
-	print("Start to receive data from the base control board..")
-	count = 0
-	count_speed = 0
-	thresh_hold = 0.1  # 0.1 * 0.62
+        scal_x = 0.642  # 0.68
+        scal_y = 0.642  # 0.62
+        scal_th = 0.624  # 0.71
+
+        print("Start to receive data from the base control board..")
+        count = 0
+        count_speed = 0
+        thresh_hold = 0.1  # 0.1 * 0.62
         while True:
             rcv = self.__ser.readline()  # need TimeOut = 0.02ms, 50hz
             if len(rcv) == 0:
                 continue
-            #print("xxxxx: " + str(rcv))
-            #self.r.sleep()
-            #continue
-	 
-	    
+            # print("xxxxx: " + str(rcv))
+            # self.r.sleep()
+            # continue
+
             if rcv.startswith('`') and rcv.endswith('~\r\n'):
                 # print 'rcv : {0}'.format(rcv)
-                rcv_new = rcv[1:len(rcv)-3]
+                rcv_new = rcv[1:len(rcv) - 3]
                 rcv_list = rcv_new.split('|')
                 if len(rcv_list) == 3:
-                    vy = float(rcv_list[0])/1000 * scal_x
-                    vx = float(rcv_list[1])/1000 * scal_y
-                    vz = float(rcv_list[2])/1000 * scal_th
+                    vy = float(rcv_list[0]) / 1000 * scal_x
+                    vx = float(rcv_list[1]) / 1000 * scal_y
+                    vz = float(rcv_list[2]) / 1000 * scal_th
 
-    		    if abs(vx_1 - vx) > thresh_hold or abs(vy_1 - vy) > thresh_hold or abs(vz_1 - vz) > thresh_hold:
-			#vx = vx_1
-			#vy = vy_1
-			#vz = vz_1
-			print ('..........out of the threshhold')
-			#continue
-
-		    else:
-		    	vx_1 = vx
-		    	vy_1 = vy
-		    	vz_1 = vz
+                    # if new one much bigger than old one, not update
+                    if abs(vx - vx_1) > thresh_hold:  # or abs(vy_1 - vy) > thresh_hold or abs(vz_1 - vz) > thresh_hold:
+                        # vx = vx_1
+                        # vy = vy_1
+                        # vz = vz_1
+                        print ('..........out of the thresh hold')
+                        vx = vx_1  # not update
+                        # continue
+                    else:
+                        vx_1 = vx  # update old one
+                        vy_1 = vy
+                        vz_1 = vz
 
                     slide_height = 0.5  # float(rcv_list[3])
-		    if vx != 0 or vy!=0 or vz != 0:
-			count_speed = count_speed + 1
-		        if count_speed / 20 == 1:
+                    if vx != 0 or vy != 0 or vz != 0:
+                        count_speed = count_speed + 1
+                        if count_speed / 20 == 1:
                             print('rcv vx: {0}, vy: {1}, vz: {2}'.format(str(vx), str(vy), str(vz)))
-			    count_speed = 0
-		    else:
-		        count = count + 1
-		        if count / 120 == 1:
-			    print('vx: {0}, vy: {1}, vz: {2}'.format(str(vx), str(vy), str(vz)))
-			    count = 0
+                            count_speed = 0
+                    else:
+                        count = count + 1
+                        if count / 120 == 1:
+                            print('vx: {0}, vy: {1}, vz: {2}'.format(str(vx), str(vy), str(vz)))
+                            count = 0
 
-		    # if vy == 0 and vx == 0 and vz == 0:continue
-		
+                    # if vy == 0 and vx == 0 and vz == 0:continue
+
                     slider_joint_state.position = [slide_height]
                     slider_joint_state.header.stamp = rospy.get_rostime()
                     slider_joint_state.header.seq += 1
                     self.joint_state_slider.publish(slider_joint_state)
-		    
+
                     current_time = rospy.get_rostime()
                     dt = (current_time - last_time).to_sec()
                     # print ('dt: {0}, {1} ,{2}'.format(str(dt), str(current_time), str(last_time)))
                     delta_x = (vx * cos(th) - vy * sin(th)) * dt
                     delta_y = (vx * sin(th) + vy * cos(th)) * dt
 
-		    delta_th = -vz * dt
+                    delta_th = -vz * dt
 
                     x += delta_x
                     y += delta_y
                     th += delta_th
-		    if th > PI:
-			th = th - PI * 2
-		    if th < -PI:
-			th = th + PI * 2
-		    
-		    '''
-                    euler = transformations.quaternion_from_euler(0, 0, -th)
-                    odom_quat = Quaternion(*euler)
-		    '''
-		    
-		    odom_quat = Quaternion()
-            	    odom_quat.x = 0.0 
-            	    odom_quat.y = 0.0
-            	    odom_quat.z = sin(th/2)
-            	    odom_quat.w = cos(th/2)
+                    if th > PI:
+                        th = th - PI * 2
+                    if th < -PI:
+                        th = th + PI * 2
+
+                    '''
+                        euler = transformations.quaternion_from_euler(0, 0, -th)
+                        odom_quat = Quaternion(*euler)
+                    '''
+
+                    odom_quat = Quaternion()
+                    odom_quat.x = 0.0
+                    odom_quat.y = 0.0
+                    odom_quat.z = sin(th / 2)
+                    odom_quat.w = cos(th / 2)
 
                     odom_trans = TransformStamped()
                     odom_trans.header.stamp = current_time
@@ -216,15 +216,14 @@ class JBotBaseDriver(object):
 
 
 if __name__ == '__main__':
-
     rospy.init_node("JBot_Base_Driver")
 
     try:
         base_driver = JBotBaseDriver(
             port='/dev/ttyUSB_base_control', vel_topic='/cmd_vel')
-        
+
         base_driver.thread_receive.start()
-	base_driver.thread_send_cmdvel.start()
+        base_driver.thread_send_cmdvel.start()
 
         while not rospy.is_shutdown():
             print("main thread ")
