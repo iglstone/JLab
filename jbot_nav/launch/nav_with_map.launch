@@ -1,0 +1,24 @@
+
+<launch>
+  <arg name="map_name" default="$(find jbot_nav)/maps/my_mp5.yaml"/>
+  <arg name="sim" default="false"/>
+
+  <include file="$(find jbot_control)/launch/ps3_control.launch">
+      <arg name="use_joy" value="false"/>
+      <arg name="sim" value="$(arg sim)"/>
+  </include>
+
+  <arg name="model" default="$(find jbot_description)/urdf/jbot_description.urdf.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+      <param name="publish_frequency" type="double" value="20.0"/>
+  </node>
+
+  <node pkg="map_server" type="map_server" name="map_server" output="screen" args="$(arg map_name)"/>
+
+  <include file="$(find jbot_nav)/launch/params_move_base.launch"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 50" />
+
+</launch>
+

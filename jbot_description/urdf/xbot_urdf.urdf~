@@ -1,0 +1,333 @@
+<robot
+  name="xbot_urdf">
+  <link
+    name="arm_base_link">
+    <inertial>
+      <origin
+        xyz="6.5338E-05 -0.0025324 0.015476"
+        rpy="0 0 0" />
+      <mass
+        value="0.088438" />
+      <inertia
+        ixx="0.0001552"
+        ixy="1.1634E-07"
+        ixz="-5.1335E-08"
+        iyy="0.00012874"
+        iyz="1.1171E-06"
+        izz="0.00024065" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/arm_base_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/arm_base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="1">
+    <inertial>
+      <origin
+        xyz="-0.00077221 0.02334 -0.0055117"
+        rpy="0 0 0" />
+      <mass
+        value="0.035834" />
+      <inertia
+        ixx="1.7182E-05"
+        ixy="3.5047E-07"
+        ixz="-2.277E-07"
+        iyy="1.8938E-05"
+        iyz="2.2357E-06"
+        izz="1.3961E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0318"
+      rpy="1.5708 8.6288E-16 -0.045991" />
+    <parent
+      link="arm_base_link" />
+    <child
+      link="1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="20"
+      velocity="20" />
+  </joint>
+  <link
+    name="2">
+    <inertial>
+      <origin
+        xyz="0.0006496 0.051301 -1.952E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.022419" />
+      <inertia
+        ixx="1.9754E-05"
+        ixy="1.0595E-10"
+        ixz="1.1322E-09"
+        iyy="5.9619E-06"
+        iyz="-6.1736E-12"
+        izz="2.32E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0.0361 0.00285"
+      rpy="-0.023437 -0.00046536 -6.2233E-17" />
+    <parent
+      link="1" />
+    <child
+      link="2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="1.58"
+      effort="20"
+      velocity="20" />
+  </joint>
+  <link
+    name="3">
+    <inertial>
+      <origin
+        xyz="-0.00142186041375823 0.0270328072928759 0.0388746037018501"
+        rpy="0 0 0" />
+      <mass
+        value="0.0402663539085629" />
+      <inertia
+        ixx="4.4127560248108E-05"
+        ixy="3.32854071731324E-08"
+        ixz="4.94345468722361E-08"
+        iyy="3.11398522692473E-05"
+        iyz="-1.89138821688278E-05"
+        izz="1.59894644311418E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/3.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0 0.1 0"
+      rpy="-0.96799 0.00040606 -0.00010493" />
+    <parent
+      link="2" />
+    <child
+      link="3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="1.58"
+      effort="20"
+      velocity="20" />
+  </joint>
+  <link
+    name="4">
+    <inertial>
+      <origin
+        xyz="0.00091287 0.036544 0.011001"
+        rpy="0 0 0" />
+      <mass
+        value="0.022861" />
+      <inertia
+        ixx="7.1489E-06"
+        ixy="-9.4993E-09"
+        ixz="-4.0439E-08"
+        iyy="6.6843E-06"
+        iyz="-8.9393E-07"
+        izz="6.2891E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/4.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/4.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="-1.0631E-05 0.054066 0.07775"
+      rpy="0.96368 -0.00031664 -0.00027497" />
+    <parent
+      link="3" />
+    <child
+      link="4" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="1.58"
+      effort="20"
+      velocity="20" />
+  </joint>
+  <link
+    name="5">
+    <inertial>
+      <origin
+        xyz="-0.000259827169187939 0.0471965828978234 -0.00215297665159428"
+        rpy="0 0 0" />
+      <mass
+        value="0.0186733070086606" />
+      <inertia
+        ixx="1.405111027373E-05"
+        ixy="-2.03721243160267E-07"
+        ixz="-1.14051477910584E-08"
+        iyy="5.9439442349666E-06"
+        iyz="9.41065401833358E-09"
+        izz="1.95798591545622E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/5.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xbot_urdf/meshes/5.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="0.00054953 0.051085 0"
+      rpy="4.2407E-07 0.00084911 9.1186E-06" />
+    <parent
+      link="4" />
+    <child
+      link="5" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="20"
+      velocity="20" />
+  </joint>
+</robot>

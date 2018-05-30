@@ -1,0 +1,21 @@
+<launch>
+  <param name="/use_sim_time" value="false" />
+  
+  <arg name="robot_description" default="robot_description"/>
+  <!-- Load universal robot description format (URDF) -->
+  <param name="$(arg robot_description)" command="$(find xacro)/xacro --inorder '$(find jbot_description)/urdf/jbot_description.urdf.xacro'"/>
+  <!-- The semantic description that corresponds to the URDF -->
+  <param name="$(arg robot_description)_semantic" textfile="$(find jbot_moveit_config)/config/jbot.srdf" />
+
+  <node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen" clear_params="true">
+      <rosparam file="$(find jbot_bringup)/config/fake_jbot_arbotix.yaml" command="load" />
+      <param name="sim" value="true"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+      <param name="publish_frequency" type="double" value="20.0" />
+  </node>
+
+  <!--node name="base_move" pkg="rostopic" type="rostopic" args="pub /cmd_vel -r 5 geometry_msgs/Twist - '[0.1,0,0]' '[0,0,-0.5]'" /-->
+  
+</launch>

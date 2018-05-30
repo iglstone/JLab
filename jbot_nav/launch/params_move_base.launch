@@ -1,0 +1,12 @@
+<launch>
+  <arg name="orientation_careless" default="false"/>
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+    <rosparam file="$(find jbot_nav)/config/jbot/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find jbot_nav)/config/jbot/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find jbot_nav)/config/jbot/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find jbot_nav)/config/jbot/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find jbot_nav)/config/jbot/base_local_planner_params.yaml" command="load" />
+    <rosparam if="$(arg orientation_careless)" file="$(find jbot_nav)/config/nav_test_params.yaml" command="load" />
+  </node>
+  
+</launch>

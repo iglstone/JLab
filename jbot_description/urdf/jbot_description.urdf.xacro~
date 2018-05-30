@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="hrg_ur3" >
+
+  <!-- body -->
+  <xacro:include filename="$(find jbot_description)/urdf/jbot_description.urdf" />
+
+  <!-- slider -->
+  <xacro:include filename="$(find jbot_description)/urdf/slider.urdf" />
+
+  <!-- right arm -->
+  <xacro:include filename="$(find jbot_description)/urdf/xbot_urdf.urdf" />
+  <!-- left arm -->
+  <xacro:include filename="$(find jbot_description)/urdf/xbot_urdf_left.urdf" />
+
+  <!-- arm -->
+  <xacro:jobot prefix="" joint_limited="false"/>
+
+  <link name="world" />
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <!--link name="slider_link" /-->
+  <joint
+    name="joint_slider"
+    type="prismatic">
+    <!--origin
+      xyz="0.085592 0 0.242"
+      rpy="3.9766E-16 5.1321E-17 3.5611E-33" /-->
+    <origin
+      xyz="0.085592 0 0.50"
+      rpy="3.9766E-16 5.1321E-17 3.5611E-33" />
+    <parent
+      link="base_link" />
+    <child
+      link="slider_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.5"
+      effort="200"
+      velocity="0.1" />
+  </joint>
+
+  <joint
+    name="joint_right_arm"
+    type="fixed">
+    <origin
+      xyz="-0.024519 0.089 0.03"
+      rpy="-1.5708 -1.502E-16 -1.3151E-12" />
+    <parent
+      link="slider_link" />
+    <child
+      link="arm_base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <joint
+    name="joint_left_arm"
+    type="fixed">
+    <origin
+      xyz="-0.024519 -0.089 0.03"
+      rpy="-1.5708 1.502E-16 3.1416" />
+    <parent
+      link="slider_link" />
+    <child
+      link="arm_base_link_left" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <!--joint name="base_2_word" type="fixed">
+    <parent link="world" />
+    <child link ="piiq_ur10_base" />
+    <origin xyz="0.0 0.0 -0.745" rpy="0.0 ${-0.5 * pi} 0.0" />
+  </joint-->
+
+  <!--joint name="ee_link_xizui" type="fixed">
+    <parent link="tool0" />
+    <child link = "robotiq_85_adapter_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0 ${-0.5 * pi} ${-0.5 * pi}" />
+  </joint>
+
+  <link name="vitual_end">
+      <collision>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+   </link>
+
+  <joint name="tcp_end" type="fixed">
+    <parent link="tool0" />
+    <child link = "vitual_end" />
+    <origin xyz="0 -0.015 0.14" rpy="0 0 0" />
+  </joint-->
+
+</robot>

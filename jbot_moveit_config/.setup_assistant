@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: jbot_description
+    relative_path: urdf/jbot_description.urdf.xacro
+  SRDF:
+    relative_path: config/hrg_ur3.srdf
+  CONFIG:
+    author_name: guolong
+    author_email: guolong@hitrobotgroup.com
+    generated_timestamp: 1524131228

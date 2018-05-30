@@ -1,0 +1,275 @@
+<robot
+  name="jbot_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.031579 -0.0021457 0.20258"
+        rpy="0 0 0" />
+      <mass
+        value="3.7838" />
+      <inertia
+        ixx="0.087435"
+        ixy="-0.00071474"
+        ixz="-0.016346"
+        iyy="0.12183"
+        iyz="-0.00045295"
+        izz="0.056191" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/base_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel_1">
+    <inertial>
+      <origin
+        xyz="0.038135 -0.00014881 -0.00026218"
+        rpy="0 0 0" />
+      <mass
+        value="0.25305" />
+      <inertia
+        ixx="0.00078463"
+        ixy="7.8797E-08"
+        ixz="1.1284E-07"
+        iyy="0.00044097"
+        iyz="-1.8134E-06"
+        izz="0.00043853" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_1"
+    type="continuous">
+    <origin
+      xyz="0.16309 0.13523 0.075"
+      rpy="2.9709 -6.9389E-17 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_1" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="wheel_2">
+    <inertial>
+      <origin
+        xyz="0.038135 -0.00014884 -0.00026227"
+        rpy="0 0 0" />
+      <mass
+        value="0.25305" />
+      <inertia
+        ixx="0.00078463"
+        ixy="7.8691E-08"
+        ixz="1.1251E-07"
+        iyy="0.00044097"
+        iyz="-1.8132E-06"
+        izz="0.00043853" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_2"
+    type="continuous">
+    <origin
+      xyz="-0.16309 0.13523 0.075"
+      rpy="1.5708 -6.9389E-17 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_2" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="wheel_3">
+    <inertial>
+      <origin
+        xyz="0.038135 0.00014884 0.00026227"
+        rpy="0 0 0" />
+      <mass
+        value="0.25305" />
+      <inertia
+        ixx="0.00078463"
+        ixy="-7.8691E-08"
+        ixz="-1.1251E-07"
+        iyy="0.00044097"
+        iyz="-1.8132E-06"
+        izz="0.00043853" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_3.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_3"
+    type="continuous">
+    <origin
+      xyz="0.16309 -0.13523 0.075"
+      rpy="-1.5708 6.9389E-17 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_3" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="wheel_4">
+    <inertial>
+      <origin
+        xyz="0.038135 -0.00029699 5.1841E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.25305" />
+      <inertia
+        ixx="0.00078463"
+        ixy="1.3254E-07"
+        ixz="-3.6181E-08"
+        iyy="0.00043766"
+        iyz="6.2871E-07"
+        izz="0.00044184" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_4.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/wheel_4.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_4"
+    type="continuous">
+    <origin
+      xyz="-0.16309 -0.13523 0.075"
+      rpy="-2.528 6.9389E-17 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_4" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <!--link
+    name="slider_link" />
+  <joint
+    name="joint_slider"
+    type="prismatic">
+    <origin
+      xyz="0.085592 0 0.242"
+      rpy="3.9766E-16 5.1321E-17 3.5611E-33" />
+    <parent
+      link="base_link" />
+    <child
+      link="slider_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.5"
+      effort="200"
+      velocity="0.1" />
+  </joint-->
+</robot>

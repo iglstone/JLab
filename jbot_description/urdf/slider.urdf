@@ -1,0 +1,73 @@
+<robot
+  name="slider">
+  <link
+    name="slider_link">
+    <inertial>
+      <origin
+        xyz="-0.00360151716417467 3.64205452949018E-09 0.0299999999677074"
+        rpy="0 0 0" />
+      <mass
+        value="0.23160791066701" />
+      <inertia
+        ixx="0.000945220644743642"
+        ixy="-1.45954830897285E-13"
+        ixz="2.7843364751832E-13"
+        iyy="0.000299581592500915"
+        iyz="-4.80914345363323E-12"
+        izz="0.0010052721488718" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/slider_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.666666666666667 0.698039215686274 0.768627450980392 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jbot_description/meshes/slider_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!--link
+    name="link_right_arm_base" />
+  <joint
+    name="joint_right_arm"
+    type="fixed">
+    <origin
+      xyz="-0.024519 0.089 0.03"
+      rpy="-1.5708 -1.502E-16 -1.3151E-12" />
+    <parent
+      link="slider_link" />
+    <child
+      link="link_right_arm_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link_left_arm_base" />
+  <joint
+    name="joint_left_arm"
+    type="fixed">
+    <origin
+      xyz="-0.024519 -0.089 0.03"
+      rpy="-1.5708 1.502E-16 3.1416" />
+    <parent
+      link="slider_link" />
+    <child
+      link="link_left_arm_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint-->
+</robot>

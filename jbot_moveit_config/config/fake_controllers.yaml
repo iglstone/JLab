@@ -1,0 +1,15 @@
+controller_list:
+  - name: fake_group_left_controller
+    joints:
+      - joint_11
+      - joint_21
+      - joint_31
+      - joint_41
+      - joint_51
+  - name: fake_group_right_controller
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5

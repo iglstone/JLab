@@ -1,0 +1,21 @@
+<launch>
+   <arg name="use_joy" default="false"/>
+   <arg name="sim" default="false"/>
+
+   <!-- first, make sure connect with PS3 joy -->  
+   <!--node respawn="true" pkg="ps3joy" type="ps3joy.py" name="ps3joy_py" output="screen" /-->
+
+   <!--joy node-->
+   <node if="$(arg use_joy)" respawn="true" pkg="joy"  type="joy_node" name="joy_joynode">
+     <param name="dev" type="string" value="/dev/input/js0" />
+     <param name="deadzone" value="0.02" />
+   </node>
+
+   <include unless="$(arg sim)" file="$(find rplidar_ros)/launch/rplidar.launch">
+     <param name="serial_port" type="string" value="/dev/ttyUSB_rplidar"/>
+   </include>
+
+   <node unless="$(arg sim)" respawn="true" pkg="jbot_control" type="ps3_control.py" name="ps3_control" output="screen" />
+   <node unless="$(arg sim)" respawn="true" pkg="jbot_control" type="jbot_base_driver.py" name="base_driver_control" output="screen" />
+
+</launch>

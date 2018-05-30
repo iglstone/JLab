@@ -1,0 +1,14 @@
+<launch>
+  <arg name="model" default="$(find jbot_description)/urdf/jbot_description.urdf.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)"/>
+  <!--param name="robot_description" command="$(find xacro)/xacro.py $(arg model)"/-->
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+  <node name="jbot_base_driver" pkg="jbot_control" type="jbot_base_driver.py"/>
+
+  <!--rostopic pub /cmd_vel geometry_msgs/Twist - '[0.1,0,0]' '[0,0,0]'-->
+  <!--rosrun tf tf_echo /odom /base_link-->
+
+</launch>
