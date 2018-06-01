@@ -1,0 +1,8 @@
+<launch>
+
+  <include file="$(find rplidar_ros)/launch/rplidar.launch">
+     <param name="serial_port" type="string" value="/dev/ttyUSB_rplidar"/>
+   </include>
+
+</launch>
+
