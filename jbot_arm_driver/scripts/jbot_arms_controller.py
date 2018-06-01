@@ -253,19 +253,19 @@ if __name__ == '__main__':
     rospy.init_node("JBot_Arms_Controller")
     try:
         _hrg_controller = JBotArmsController(
-            port='/dev/ttyUSB0', joint_names=JOINT_NAMES, gripper_topic='cmd_gripper')
+            port='/dev/ttyUSB_left_arm', joint_names=JOINT_NAMES, gripper_topic='cmd_gripper')
         _hrg_controller.thread_joint_state_req.start()
         _hrg_controller.thread_receive.start()
 
         _hrg_controller_left = JBotArmsController(
-            port='/dev/ttyUSB1', joint_names=JOINT_NAMES_LEFT, gripper_topic='cmd_gripper_left')
+            port='/dev/ttyUSB_right_arm', joint_names=JOINT_NAMES_LEFT, gripper_topic='cmd_gripper_left')
         _hrg_controller_left.thread_joint_state_req.start()
         _hrg_controller_left.thread_receive.start()
 
         # _hrg_controller.cmd_control_arm_target_index_position(1)
         # _hrg_controller_left.cmd_control_arm_target_index_position(1)
 
-        for t in range(0, 15):
+        for t in range(0, 3):
             for i in range(1, 5, 1):
                 _hrg_controller.cmd_control_arm_target_index_position(i)
                 rospy.sleep(8)
