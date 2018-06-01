@@ -45,7 +45,7 @@ class JBotBaseDriver(object):
         self.thread_receive.setDaemon(True)
         self.thread_send_cmdvel.setDaemon(True)
 
-        self.fm_cmd_vel = '`0|0|0|0~\r'
+        self.fm_cmd_vel = '`0|0|0|1002|0~\r'
         self.mutex = threading.Lock()
 
         self.r = rospy.Rate(50)
@@ -68,13 +68,14 @@ class JBotBaseDriver(object):
         vy = int(1000 * vy)
         vz = int(1000 * vz)
         vz = -vz
+	vh = 1002
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
         # self.__ser.write(self.fm_cmd_vel)
 
         self.mutex.acquire()
-        # self.fm_cmd_vel = '`{0}|{1}|{2}|0~\r'.format(str(vx), str(vy), str(vz))
-        self.fm_cmd_vel = '`{0}|{1}|{2}|0~\r'.format(str(vy), str(vx), str(vz))
+        # self.fm_cmd_vel = '`{0}|{1}|{2}|0~\r'.format(str(vy), str(vx), str(vz))
+        self.fm_cmd_vel = '`{0}|{1}|{2}|{3}|0~\r'.format(str(vy), str(vx), str(vz), str(vh))
         # byte = struct.pack('>ciii', 72, vx, vy, vz)  # big edian, start with H
         # print('receied cmd_vel : {0}'.format(str(self.fm_cmd_vel)))
         self.mutex.release()
@@ -112,7 +113,7 @@ class JBotBaseDriver(object):
                 # print 'rcv : {0}'.format(rcv)
                 rcv_new = rcv[1:len(rcv) - 3]
                 rcv_list = rcv_new.split('|')
-                if len(rcv_list) == 3:
+                if len(rcv_list) == 4:
                     vy = float(rcv_list[0]) / 1000 * scal_x
                     vx = float(rcv_list[1]) / 1000 * scal_y
                     vz = float(rcv_list[2]) / 1000 * scal_th
