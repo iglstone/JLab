@@ -87,7 +87,16 @@ rviz
 rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{ header: { frame_id: "base_link" }, pose: { position: { x: 1.0, y: 0, z: 0 }, orientation: { x: 0, y: 0, z: 0, w: 1 } } }'  
 
 
-
+#bind usb seriral port,
+#udevadm info --name=ttyUSB0 --attribute-walk
+sudo gedit /etc/udev/rules.d/20-usb-serial.rules
+KERNEL=="ttyUSB*"  MODE="0777"
+KERNEL=="ttyS*"  MODE="0777"
+KERNELS=="1-1.2.4", SUBSYSTEM=="tty", SYMLINK+="ttyUSB_rplidar"
+KERNELS=="1-1.1.2", SUBSYSTEM=="tty", SYMLINK+="ttyUSB_left_arm"
+KERNELS=="1-1.1.1", SUBSYSTEM=="tty", SYMLINK+="ttyUSB_right_arm"
+KERNELS=="1-1.1.4", SUBSYSTEM=="tty", SYMLINK+="ttyUSB_base_control"
+sudo udevadm trigger
 
 
 
