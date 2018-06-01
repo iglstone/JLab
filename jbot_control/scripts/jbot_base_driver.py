@@ -68,7 +68,7 @@ class JBotBaseDriver(object):
         vy = int(1000 * vy)
         vz = int(1000 * vz)
         vz = -vz
-	    vh = 1002
+        vh = 1002
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
         # self.__ser.write(self.fm_cmd_vel)
