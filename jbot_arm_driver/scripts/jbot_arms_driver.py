@@ -5,9 +5,16 @@ import actionlib
 from control_msgs.msg import FollowJointTrajectoryAction
 from jbot_arms_controller import JBotArmsController
 from sensor_msgs.msg import Joy
+from std_msgs.msg import Int16
 
 JOINT_NAMES = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5']
 JOINT_NAMES_LEFT = ['joint_11', 'joint_21', 'joint_31', 'joint_41', 'joint_51']
+
+MODE_JOINT = 100
+MODE_SLIDER = 101
+SLIDER_UP = 1001
+SLIDER_STOP = 1002
+SLIDER_DOWN = 1003
 
 
 class JBotArmsDriver(object):
@@ -53,7 +60,12 @@ class JBotArmsDriver(object):
                                                         auto_start=True)
         self.controller = self.controller_right
 
-        rospy.loginfo("Started FollowController")
+        self.mode = MODE_JOINT
+        self.slider_state = SLIDER_STOP
+
+        self.__pub_slider_states = rospy.Publisher('/slider_states', Int16, queue_size=3)
+
+        rospy.loginfo("Started arm driver")
 
         while not rospy.is_shutdown():
             print("main thread ")
@@ -68,25 +80,40 @@ class JBotArmsDriver(object):
             else:
                 self.controller = self.controller_left
 
-        scal_vertical = data.axes[3]
-        if scal_vertical > 0.5:
-            self.method = 2
-        if scal_vertical < -0.5:
-            self.method = 1
+        if data.buttons[3] == 1:  # start button, change the Mode
+            if self.mode == MODE_JOINT:
+                self.mode = MODE_SLIDER
+            else:
+                self.mode = MODE_JOINT
 
-        if data.buttons[9] == 1:
-            self.controller.gripper_control(self.open)
-            self.open += 1
-        if data.buttons[11] == 1:
-            self.controller.cmd_control_one_joint(4, self.method)
-        if data.buttons[12] == 1:
-            self.controller.cmd_control_one_joint(3, self.method)
-        if data.buttons[13] == 1:
-            self.controller.cmd_control_one_joint(2, self.method)
-        if data.buttons[14] == 1:
-            self.controller.cmd_control_one_joint(1, self.method)
-        if data.buttons[15] == 1:
-            self.controller.cmd_control_one_joint(0, self.method)
+        scal_vertical = data.axes[3]
+        if self.mode == MODE_JOINT:  # control joint
+            if scal_vertical > 0.5:
+                self.method = 2
+            if scal_vertical < -0.5:
+                self.method = 1
+
+            if data.buttons[9] == 1:
+                self.controller.gripper_control(self.open)
+                self.open += 1
+            if data.buttons[11] == 1:
+                self.controller.cmd_control_one_joint(4, self.method)
+            if data.buttons[12] == 1:
+                self.controller.cmd_control_one_joint(3, self.method)
+            if data.buttons[13] == 1:
+                self.controller.cmd_control_one_joint(2, self.method)
+            if data.buttons[14] == 1:
+                self.controller.cmd_control_one_joint(1, self.method)
+            if data.buttons[15] == 1:
+                self.controller.cmd_control_one_joint(0, self.method)
+        else:  # control slider
+            if scal_vertical > 0.5:
+                self.slider_state = SLIDER_UP
+            if scal_vertical < -0.5:
+                self.slider_state = SLIDER_DOWN
+            else:
+                self.slider_state = SLIDER_STOP
+            self.__pub_slider_states.publish(self.slider_state)
 
     def actionCb_right(self, goal):
         traj = goal.trajectory

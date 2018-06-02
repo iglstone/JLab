@@ -9,6 +9,7 @@ from geometry_msgs.msg import Twist, TransformStamped, Quaternion
 import serial
 from math import cos, sin
 from tf import TransformBroadcaster, transformations
+from std_msgs.msg import Int16
 import struct
 
 PI = 3.1416
@@ -39,12 +40,14 @@ class JBotBaseDriver(object):
         self.__ros_pub_odomtry = rospy.Publisher('/odom', Odometry, queue_size=3)
         self.__ros_sub_velocity = rospy.Subscriber(self._vel_topic, Twist, self.__vel_control)
         self.odom_broadcaster = TransformBroadcaster()
+        self.__sub_slider_states = rospy.Subscriber('/slider_states', Int16, self.__slider_callback)
 
         self.thread_send_cmdvel = threading.Thread(target=self.__send_cmdvel)
         self.thread_receive = threading.Thread(target=self.__serial_receive)
         self.thread_receive.setDaemon(True)
         self.thread_send_cmdvel.setDaemon(True)
 
+        self.vh = 1002
         self.fm_cmd_vel = '`0|0|0|1002|0~\r'
         self.mutex = threading.Lock()
 
@@ -59,6 +62,10 @@ class JBotBaseDriver(object):
             self.__ser.write(self.fm_cmd_vel)
             rospy.sleep(time_sleep)
 
+    def __slider_callback(self, data):
+        slider_state = data.data
+        self.vh = slider_state
+
     def __vel_control(self, data):
         vx = data.linear.x
         vy = data.linear.y
@@ -68,14 +75,14 @@ class JBotBaseDriver(object):
         vy = int(1000 * vy)
         vz = int(1000 * vz)
         vz = -vz
-        vh = 1002
+        # vh = 1002
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
         # self.__ser.write(self.fm_cmd_vel)
 
         self.mutex.acquire()
         # self.fm_cmd_vel = '`{0}|{1}|{2}|0~\r'.format(str(vy), str(vx), str(vz))
-        self.fm_cmd_vel = '`{0}|{1}|{2}|{3}|0~\r'.format(str(vy), str(vx), str(vz), str(vh))
+        self.fm_cmd_vel = '`{0}|{1}|{2}|{3}|0~\r'.format(str(vy), str(vx), str(vz), str(self.vh))
         # byte = struct.pack('>ciii', 72, vx, vy, vz)  # big edian, start with H
         # print('receied cmd_vel : {0}'.format(str(self.fm_cmd_vel)))
         self.mutex.release()
@@ -119,6 +126,7 @@ class JBotBaseDriver(object):
                     vz = float(rcv_list[2]) / 1000 * scal_th
 
                     '''
+                    # filter data
                     # if new one much bigger than old one, not update
                     if abs(vx - vx_1) > thresh_hold:  # or abs(vy_1 - vy) > thresh_hold or abs(vz_1 - vz) > thresh_hold:
                         # vx = vx_1
