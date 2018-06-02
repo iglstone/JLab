@@ -12,9 +12,9 @@
       <param name="publish_frequency" type="double" value="20.0"/>
   </node>
 
-  <include file="$(find rplidar_ros)/launch/rplidar.launch">
+  <!--include file="$(find rplidar_ros)/launch/rplidar.launch">
     <param name="serial_port" type="string" value="/dev/ttyUSB_rplidar"/>
-  </include>
+  </include-->
 
   <include file="$(find jbot_nav)/launch/params_gmapping.launch"/>
 
