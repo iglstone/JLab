@@ -3,7 +3,7 @@ moveit_setup_assistant_config:
     package: jbot_description
     relative_path: urdf/jbot_description.urdf.xacro
   SRDF:
-    relative_path: config/hrg_ur3.srdf
+    relative_path: config/jbot.srdf
   CONFIG:
     author_name: guolong
     author_email: guolong@hitrobotgroup.com
