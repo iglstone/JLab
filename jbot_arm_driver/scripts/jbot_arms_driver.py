@@ -28,15 +28,15 @@ class JBotArmsDriver(object):
 
         self.rate = 20
 
-        self.controller_right = JBotArmsController(
-            port='/dev/ttyUSB_left_arm', joint_names=JOINT_NAMES, gripper_topic='/cmd_gripper')
-        self.controller_right.thread_joint_state_req.start()
-        self.controller_right.thread_receive.start()
-
         self.controller_left = JBotArmsController(
-            port='/dev/ttyUSB_right_arm', joint_names=JOINT_NAMES_LEFT, gripper_topic='/cmd_gripper_left')
+            port='/dev/ttyUSB_left_arm', joint_names=JOINT_NAMES_LEFT, gripper_topic='/cmd_gripper_left')
         self.controller_left.thread_joint_state_req.start()
         self.controller_left.thread_receive.start()
+
+        self.controller_right = JBotArmsController(
+            port='/dev/ttyUSB_right_arm', joint_names=JOINT_NAMES, gripper_topic='/cmd_gripper')
+        self.controller_right.thread_joint_state_req.start()
+        self.controller_right.thread_receive.start()
 
         self.controller.cmd_control_arm_target_index_position(1)
         self.controller_left.cmd_control_arm_target_index_position(1)
