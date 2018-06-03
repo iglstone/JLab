@@ -58,7 +58,7 @@ class JBotArmsController(object):
             if self.__flag.isSet():
                 rospy.sleep(req_time_duration)
                 self.__ser.write(data)
-                print(repr(data))
+                # print(repr(data))
             else:
                 print "flag will wait"
                 self.__flag.wait()
@@ -66,7 +66,7 @@ class JBotArmsController(object):
     def cmd_control_arm_init_position(self):
         # move the arm joints 1-5 to PI/2 positinos in 1000ms
         data = b"\x55\x55\x14\x03\x05\x88\x13\x06\xf4\x01\x05\xf4\x01\x04\xf4\x01\x03\xf4\x01\x02\xf4\x01"
-        print(repr(data))
+        # print(repr(data))
         self.__ser.write(data)
         rospy.sleep(5)
 
@@ -107,7 +107,7 @@ class JBotArmsController(object):
 
         com = byte_com2 + byte_com
         data = bytes(com)
-        print(repr(data))
+        # print(repr(data))
         self.__ser.write(data)
         # rospy.sleep(time_ms/1000.0 + 0.05)
         return 1
@@ -158,7 +158,7 @@ class JBotArmsController(object):
         com = byte_com2 + byte_com
 
         data = bytes(com)
-        print(repr(data))
+        # print(repr(data))
         self.__flag.clear()
         rospy.sleep(0.2)
         self.__ser.write(data)
@@ -177,12 +177,12 @@ class JBotArmsController(object):
             data = b"\x55\x55\x08\x03\x01\x88\x13\x04\xc8\x00"
         elif index == 4:
             data = b"\x55\x55\x08\x03\x01\x88\x13\x05\xc8\x00"
-        print(repr(data))
+        # print(repr(data))
 
         self.__ser.write(data)
         self.__flag.set()
         if self.__flag.is_set():
-            print 'flag is true'
+             print 'flag is true'
 
     def gripper_control(self, data):
         if data % 2 == 0:

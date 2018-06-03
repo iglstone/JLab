@@ -75,16 +75,16 @@ class JBotBaseDriver(object):
         vy = int(1000 * vy)
         vz = int(1000 * vz)
         vz = -vz
-        # vh = 1002
+        vh = self.vh
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
         # self.__ser.write(self.fm_cmd_vel)
 
         self.mutex.acquire()
         # self.fm_cmd_vel = '`{0}|{1}|{2}|0~\r'.format(str(vy), str(vx), str(vz))
-        self.fm_cmd_vel = '`{0}|{1}|{2}|{3}|0~\r'.format(str(vy), str(vx), str(vz), str(self.vh))
+        self.fm_cmd_vel = '`{0}|{1}|{2}|{3}|0~\r'.format(str(vy), str(vx), str(vz), str(vh))
         # byte = struct.pack('>ciii', 72, vx, vy, vz)  # big edian, start with H
-        # print('receied cmd_vel : {0}'.format(str(self.fm_cmd_vel)))
+        print('sent cmd_vel : {0}'.format(str(self.fm_cmd_vel)))
         self.mutex.release()
 
     def __serial_receive(self):

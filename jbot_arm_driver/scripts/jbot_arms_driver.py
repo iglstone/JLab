@@ -109,7 +109,7 @@ class JBotArmsDriver(object):
         else:  # control slider
             if scal_vertical > 0.5:
                 self.slider_state = SLIDER_UP
-            if scal_vertical < -0.5:
+            elif scal_vertical < -0.5:
                 self.slider_state = SLIDER_DOWN
             else:
                 self.slider_state = SLIDER_STOP
