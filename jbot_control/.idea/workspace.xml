@@ -15,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/jbot_base_driver.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="460">
-              <caret line="86" column="64" lean-forward="true" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
+              <caret line="86" column="10" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -271,7 +271,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/jbot_base_driver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
-          <caret line="86" column="64" lean-forward="true" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
+          <caret line="86" column="10" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
