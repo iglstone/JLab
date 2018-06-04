@@ -185,15 +185,19 @@ class JBotArmsController(object):
              print 'flag is true'
 
     def gripper_control(self, data):
+        self.__flag.clear()
+        rospy.sleep(0.05)
         if data % 2 == 0:
             data_0pen = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"
             self.__ser.write(data_0pen)
         else:
             data_close = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"
             self.__ser.write(data_close)
-        rospy.sleep(0.05)
+        self.__flag.set()
 
     def __gripper_control(self, data):
+        self.__flag.clear()
+        rospy.sleep(0.05)
         if data.data == 0:
             self.cmd_control_arm_target_index_position(1)
         else:
@@ -203,7 +207,7 @@ class JBotArmsController(object):
             else:
                 data_close = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"
                 self.__ser.write(data_close)
-        rospy.sleep(0.05)
+        self.__flag.set()
 
     def __recv_begain_with(self):
         # data start with 'UU'
