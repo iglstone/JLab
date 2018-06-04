@@ -42,6 +42,11 @@ class JBotArmsDriver(object):
         self.controller.cmd_control_arm_target_index_position(1)
         self.controller_left.cmd_control_arm_target_index_position(1)
 
+        self.mode = MODE_JOINT
+        self.slider_state = SLIDER_STOP
+        self.__pub_slider_states = rospy.Publisher('/slider_states', Int16, queue_size=3)
+        rospy.loginfo("Started arm driver")
+
         # for t in range(0, 1):
         #     self.controller.cmd_control_arm_target_index_position(1)
         #     rospy.sleep(6)
@@ -59,14 +64,7 @@ class JBotArmsDriver(object):
                                                         FollowJointTrajectoryAction,
                                                         execute_cb=self.actionCb_left,
                                                         auto_start=True)
-
-        self.mode = MODE_JOINT
-        self.slider_state = SLIDER_STOP
-
-        self.__pub_slider_states = rospy.Publisher('/slider_states', Int16, queue_size=3)
-
-        rospy.loginfo("Started arm driver")
-
+        
         while not rospy.is_shutdown():
             print("main thread ")
             rospy.sleep(0.1)
