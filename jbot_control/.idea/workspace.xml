@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jbot_arms_controller.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jbot_arms_controller.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="194" column="23" lean-forward="false" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+            <state relative-caret-position="2521">
+              <caret line="189" column="16" lean-forward="true" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jbot_arms_driver.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jbot_arms_driver.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1600">
-              <caret line="106" column="20" lean-forward="false" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
+            <state relative-caret-position="353">
+              <caret line="98" column="41" lean-forward="true" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -60,7 +60,7 @@
       <file leaf-file-name="ps3_control.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/ps3_control.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="1680">
               <caret line="86" column="42" lean-forward="true" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
               <folding />
             </state>
@@ -82,8 +82,8 @@
         <option value="$PROJECT_DIR$/launch/ps3_control.launch" />
         <option value="$PROJECT_DIR$/scripts/ps3_control.py" />
         <option value="$PROJECT_DIR$/scripts/jbot_base_driver.py" />
-        <option value="$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py" />
         <option value="$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py" />
+        <option value="$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py" />
       </list>
     </option>
   </component>
@@ -340,26 +340,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ps3_control.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="1680">
           <caret line="86" column="42" lean-forward="true" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
+    <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1600">
-          <caret line="106" column="20" lean-forward="false" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
+        <state relative-caret-position="2521">
+          <caret line="189" column="16" lean-forward="true" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py">
+    <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="194" column="23" lean-forward="false" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+        <state relative-caret-position="353">
+          <caret line="98" column="41" lean-forward="true" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
