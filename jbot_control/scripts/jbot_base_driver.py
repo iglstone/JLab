@@ -17,7 +17,7 @@ TIMER_OUT = 0.02  # 0.015
 
 
 class JBotBaseDriver(object):
-    def __init__(self, port='/dev/ttyUSB0', vel_topic='/cmd_vel'):
+    def __init__(self, port='/dev/ttyUSB_base_control', vel_topic='/cmd_vel'):
 
         self._vel_topic = vel_topic
 

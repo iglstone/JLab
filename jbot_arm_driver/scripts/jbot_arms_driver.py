@@ -50,7 +50,7 @@ class JBotArmsDriver(object):
         self.controller = self.controller_right
         self.controller.cmd_control_arm_target_index_position(1)
         self.controller_left.cmd_control_arm_target_index_position(1)
-        
+
         # for t in range(0, 1):
         #     self.controller.cmd_control_arm_target_index_position(1)
         #     rospy.sleep(6)
