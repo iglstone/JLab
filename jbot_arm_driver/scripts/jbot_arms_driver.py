@@ -89,7 +89,7 @@ class JBotArmsDriver(object):
                 else:
                     self.controller = self.controller_left
                 self.is_change = True
-        print("self.is_change :"+str(self.is_change))
+        # print("self.is_change :"+str(self.is_change))
 
         if data.buttons[3] == 1:  # start button, change the Mode
             if self.mode == MODE_JOINT:
@@ -105,8 +105,8 @@ class JBotArmsDriver(object):
                 self.method = 1
 
             if data.buttons[9] == 1:
-                self.controller.gripper_control(self.open)
                 if not self.is_change:
+                    self.controller.gripper_control(self.open)
                     self.open += 1
             if data.buttons[11] == 1:
                 self.controller.cmd_control_one_joint(4, self.method)

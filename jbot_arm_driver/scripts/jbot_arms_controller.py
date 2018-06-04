@@ -15,7 +15,7 @@ req_time_duration = 0.2  # 0.2  # 0.03
 
 
 class JBotArmsController(object):
-    def __init__(self, port='/dev/ttyUSB0', joint_names=[], gripper_topic='/cmd_gripper'):
+    def __init__(self, port='/dev/ttyUSB_right_arm', joint_names=[], gripper_topic='/cmd_gripper'):
 
         self._joint_names = joint_names
         self._gripper_topic = gripper_topic
