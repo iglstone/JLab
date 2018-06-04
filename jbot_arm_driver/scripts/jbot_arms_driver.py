@@ -91,20 +91,22 @@ class JBotArmsDriver(object):
                 self.is_change = True
 
             if data.buttons[9] == 1:
-                print "button 9 is pressed"
+                # print "button 9 is pressed"
                 if not self.is_change:
-                    print("will start gripper")
+                    # print("will start gripper")
                     self.controller.gripper_control(self.open)
                     self.open += 1
                     self.is_change = True
 
-        # print("self.is_change :"+str(self.is_change))
+            if data.buttons[3] == 1:  # start button, change the Mode
+                if not self.is_change:
+                    if self.mode == MODE_JOINT:
+                        self.mode = MODE_SLIDER
+                    else:
+                        self.mode = MODE_JOINT
+                    self.is_change = True
 
-        if data.buttons[3] == 1:  # start button, change the Mode
-            if self.mode == MODE_JOINT:
-                self.mode = MODE_SLIDER
-            else:
-                self.mode = MODE_JOINT
+        print("self.is_change :"+str(self.is_change))
 
         scal_vertical = data.axes[3]
         if self.mode == MODE_JOINT:  # control joint

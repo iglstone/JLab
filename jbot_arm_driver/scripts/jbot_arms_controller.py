@@ -192,7 +192,7 @@ class JBotArmsController(object):
             data_string = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open
         else:
             data_string = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"  # close
-        print('gripper data:'+str(data_string)+"----"+str(data))
+        print('gripper data:'+str(repr(data_string))+"----"+str(data))
         self.__ser.write(data_string)
         self.__flag.set()
 
