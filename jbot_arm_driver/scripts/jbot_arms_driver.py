@@ -47,6 +47,10 @@ class JBotArmsDriver(object):
         self.__pub_slider_states = rospy.Publisher('/slider_states', Int16, queue_size=3)
         rospy.loginfo("Started arm driver")
 
+        self.current = rospy.get_rostime()
+        self.last = rospy.get_rostime()
+        self.is_change = False
+
         # for t in range(0, 1):
         #     self.controller.cmd_control_arm_target_index_position(1)
         #     rospy.sleep(6)
@@ -71,12 +75,21 @@ class JBotArmsDriver(object):
             rospy.spin()
 
     def joy_callback(self, data):
-        if data.buttons[0] == 1:
-            self.leftOrRight += 1
-            if self.leftOrRight % 2 == 0:
-                self.controller = self.controller_right
-            else:
-                self.controller = self.controller_left
+
+        self.current = rospy.get_rostime()
+        if (self.current - self.last).to_sec() > 0.5:
+            self.is_change = False
+            self.last = self.current
+
+        if not self.is_change:
+            if data.buttons[0] == 1:
+                self.leftOrRight += 1
+                if self.leftOrRight % 2 == 0:
+                    self.controller = self.controller_right
+                else:
+                    self.controller = self.controller_left
+                self.is_change = True
+        print("self.is_change :"+self.is_change)
 
         if data.buttons[3] == 1:  # start button, change the Mode
             if self.mode == MODE_JOINT:
