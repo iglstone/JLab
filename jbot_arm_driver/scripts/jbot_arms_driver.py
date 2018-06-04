@@ -110,6 +110,8 @@ class JBotArmsDriver(object):
                     print("will start gripper")
                     self.controller.gripper_control(self.open)
                     self.open += 1
+                    self.is_change = True
+                    
             if data.buttons[11] == 1:
                 self.controller.cmd_control_one_joint(4, self.method)
             if data.buttons[12] == 1:
