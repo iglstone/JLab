@@ -149,7 +149,7 @@
     <child
       link="21" />
     <axis
-      xyz="1 0 0" />
+      xyz="-1 0 0" />
     <limit
       lower="-1.58"
       upper="1.58"
@@ -265,7 +265,7 @@
     <child
       link="41" />
     <axis
-      xyz="1 0 0" />
+      xyz="-1 0 0" />
     <limit
       lower="-1.58"
       upper="1.58"

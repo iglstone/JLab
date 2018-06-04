@@ -64,7 +64,7 @@ class JBotArmsDriver(object):
                                                         FollowJointTrajectoryAction,
                                                         execute_cb=self.actionCb_left,
                                                         auto_start=True)
-        
+
         while not rospy.is_shutdown():
             print("main thread ")
             rospy.sleep(0.1)
