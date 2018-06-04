@@ -38,10 +38,6 @@ class JBotArmsDriver(object):
         self.controller_right.thread_joint_state_req.start()
         self.controller_right.thread_receive.start()
 
-        self.controller = self.controller_right
-        self.controller.cmd_control_arm_target_index_position(1)
-        self.controller_left.cmd_control_arm_target_index_position(1)
-
         self.mode = MODE_JOINT
         self.slider_state = SLIDER_STOP
         self.__pub_slider_states = rospy.Publisher('/slider_states', Int16, queue_size=3)
@@ -51,6 +47,10 @@ class JBotArmsDriver(object):
         self.last = rospy.get_rostime()
         self.is_change = False
 
+        self.controller = self.controller_right
+        self.controller.cmd_control_arm_target_index_position(1)
+        self.controller_left.cmd_control_arm_target_index_position(1)
+        
         # for t in range(0, 1):
         #     self.controller.cmd_control_arm_target_index_position(1)
         #     rospy.sleep(6)
