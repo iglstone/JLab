@@ -189,9 +189,11 @@ class JBotArmsController(object):
         rospy.sleep(0.05)
         data_st = ''
         if data % 2 == 0:
-            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open
+            # data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open
+            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x06"
         else:
-            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"  # close
+            # data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"  # close
+            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x02"
         self.__ser.write(data_st)
         self.__flag.set()
 
