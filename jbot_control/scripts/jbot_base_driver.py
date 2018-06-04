@@ -74,7 +74,7 @@ class JBotBaseDriver(object):
         vx = int(1000 * vx)
         vy = int(1000 * vy)
         vz = int(1000 * vz)
-        vz = -vz
+        # vz = -vz
         vh = self.vh
 
         # self.fm_cmd_vel = '`{0}|{1}|{2}~'.format(str(vx), str(vy), str(vz))
