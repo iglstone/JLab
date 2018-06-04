@@ -187,14 +187,13 @@ class JBotArmsController(object):
     def gripper_control(self, data):
         self.__flag.clear()
         rospy.sleep(0.05)
-        data_st = ''
+        data_string = ''
         if data % 2 == 0:
-            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open
-
+            data_string = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open
         else:
-            data_st = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"  # close
-
-        self.__ser.write(data_st)
+            data_string = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x00"  # close
+        print('gripper data:'+str(data))
+        self.__ser.write(data_string)
         self.__flag.set()
 
     def __gripper_control(self, data):
