@@ -36,8 +36,8 @@
       <file leaf-file-name="jbot_arms_controller.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5053">
-              <caret line="268" column="36" lean-forward="false" selection-start-line="268" selection-start-column="36" selection-end-line="268" selection-end-column="36" />
+            <state relative-caret-position="197">
+              <caret line="186" column="8" lean-forward="false" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -48,8 +48,8 @@
       <file leaf-file-name="jbot_arms_driver.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="91" column="52" lean-forward="false" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
+            <state relative-caret-position="300">
+              <caret line="108" column="38" lean-forward="false" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -339,8 +339,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5053">
-          <caret line="268" column="36" lean-forward="false" selection-start-line="268" selection-start-column="36" selection-end-line="268" selection-end-column="36" />
+        <state relative-caret-position="197">
+          <caret line="186" column="8" lean-forward="false" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
@@ -357,8 +357,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="91" column="52" lean-forward="false" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
+        <state relative-caret-position="300">
+          <caret line="108" column="38" lean-forward="false" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>

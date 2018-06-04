@@ -106,7 +106,8 @@ class JBotArmsDriver(object):
 
             if data.buttons[9] == 1:
                 self.controller.gripper_control(self.open)
-                self.open += 1
+                if not self.is_change:
+                    self.open += 1
             if data.buttons[11] == 1:
                 self.controller.cmd_control_one_joint(4, self.method)
             if data.buttons[12] == 1:
