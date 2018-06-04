@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
-              <caret line="91" column="48" lean-forward="false" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
+              <caret line="91" column="52" lean-forward="false" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -358,7 +358,7 @@
     <entry file="file://$PROJECT_DIR$/../jbot_arm_driver/scripts/jbot_arms_driver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
-          <caret line="91" column="48" lean-forward="false" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
+          <caret line="91" column="52" lean-forward="false" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
