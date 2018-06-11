@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/../jbot_arm_driver/.idea/jbot_arm_driver.iml" filepath="$PROJECT_DIR$/../jbot_arm_driver/.idea/jbot_arm_driver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/jbot_control.iml" filepath="$PROJECT_DIR$/.idea/jbot_control.iml" />
-    </modules>
-  </component>
-</project>
