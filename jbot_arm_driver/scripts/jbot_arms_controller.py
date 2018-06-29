@@ -186,7 +186,7 @@ class JBotArmsController(object):
 
     def gripper_control(self, data):
         self.__flag.clear()
-        rospy.sleep(0.05)
+        rospy.sleep(0.10)
         data_string = ''
         if data % 2 == 0:
             data_string = b"\x55\x55\x08\x03\x01\xe8\x03\x01\xd0\x07"  # open

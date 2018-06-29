@@ -4,6 +4,8 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 
 
+# this class is main control the car move by ps joy, not arms.
+
 class Ps3Control(object):
     def __init__(self):
         self.cmd = None

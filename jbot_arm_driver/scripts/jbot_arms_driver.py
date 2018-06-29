@@ -51,6 +51,13 @@ class JBotArmsDriver(object):
         self.controller.cmd_control_arm_target_index_position(1)
         self.controller_left.cmd_control_arm_target_index_position(1)
 
+        self.btSelectBefore = 0
+        self.flagRightArm = True
+        self.btGripperBefore = 0  # open
+        self.flagGripperOpen = True
+        self.btSliderBefore = 0  # mode joint, not slider
+        self.flagSliderMode = False
+
         # for t in range(0, 1):
         #     self.controller.cmd_control_arm_target_index_position(1)
         #     rospy.sleep(6)
@@ -75,14 +82,44 @@ class JBotArmsDriver(object):
             rospy.spin()
 
     def joy_callback(self, data):
+        # choose arm
+        if self.btSelectBefore == 0 and data.buttons[0] == 1:  # select
+            if self.flagRightArm:
+                self.controller = self.controller_left
+                self.flagRightArm = False
+            else:
+                self.controller = self.controller_right
+                self.flagRightArm = True
+        self.btSelectBefore = data.buttons[0]  # update the button before
 
+        # gripper
+        if self.btGripperBefore == 0 and data.buttons[9] == 1:  # grip
+            if self.flagGripperOpen:
+                self.controller.gripper_control(1)  # close
+                self.flagGripperOpen = False
+            else:
+                self.controller.gripper_control(2)  # open
+                self.flagGripperOpen = True
+        self.btGripperBefore = data.buttons[9]  # update
+
+        # slider
+        if self.btSliderBefore == 0 and data.buttons[3] == 1:  # start button pressed, change mode to slide ,not joint.
+            if self.flagSliderMode:
+                self.mode = MODE_JOINT
+                self.flagSliderMode = False
+            else:
+                self.mode = MODE_SLIDER
+                self.flagSliderMode = True
+        self.btSliderBefore = data.buttons[3]
+
+        '''
         self.current = rospy.get_rostime()
         if (self.current - self.last).to_sec() > 0.5:
             self.is_change = False
             self.last = self.current
 
         if not self.is_change:
-            if data.buttons[0] == 1:
+            if data.buttons[0] == 1:  # button 0, change the arm
                 self.leftOrRight += 1
                 if self.leftOrRight % 2 == 0:
                     self.controller = self.controller_right
@@ -90,7 +127,7 @@ class JBotArmsDriver(object):
                     self.controller = self.controller_left
                 self.is_change = True
 
-            if data.buttons[9] == 1:
+            if data.buttons[9] == 1:  # button 9, gripper action
                 # print "button 9 is pressed"
                 if not self.is_change:
                     # print("will start gripper")
@@ -107,6 +144,7 @@ class JBotArmsDriver(object):
                     self.is_change = True
 
         # print("self.is_change :"+str(self.is_change))
+        '''
 
         scal_vertical = data.axes[3]
         if self.mode == MODE_JOINT:  # control joint
