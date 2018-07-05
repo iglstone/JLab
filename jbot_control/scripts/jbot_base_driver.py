@@ -54,9 +54,9 @@ class JBotBaseDriver(object):
         self.r = rospy.Rate(50)
         # self.r = rospy.Rate(3)
 
-    #  send cmd vel evey 20 ms, 50hz
+    #  send init_gripper vel evey 20 ms, 50hz
     def __send_cmdvel(self):
-        time_sleep = TIMER_OUT  # 0.015  # send cmd vel evey 20 ms, 50hz
+        time_sleep = TIMER_OUT  # 0.015  # send init_gripper vel evey 20 ms, 50hz
         while True:
             # print('send cmd_vel: {0}'.format(self.fm_cmd_vel))
             self.__ser.write(self.fm_cmd_vel)
